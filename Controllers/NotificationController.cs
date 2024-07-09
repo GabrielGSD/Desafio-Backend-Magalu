@@ -1,6 +1,6 @@
 ﻿using DesafioMagalu.Dtos;
 using DesafioMagalu.Exceptions;
-using DesafioMagalu.Service;
+using DesafioMagalu.Service.NotificationService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DesafioMagalu.Controllers
@@ -92,5 +92,6 @@ namespace DesafioMagalu.Controllers
 				return StatusCode(500, new { message = "An unexpected error occurred." });
 			}
 		}
+
 	}
 }

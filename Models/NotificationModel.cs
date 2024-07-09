@@ -10,6 +10,7 @@ namespace DesafioMagalu.Models
 		public string Message { get; set; }
 		public int ChannelId { get; set; }
 		public int StatusId { get; set; }
+		public string JobId { get; set; }
 		
 		[JsonIgnore]
 		public ChannelModel Channel { get; set; }

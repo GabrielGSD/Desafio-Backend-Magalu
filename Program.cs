@@ -1,5 +1,7 @@
 using DesafioMagalu.Database;
-using DesafioMagalu.Service;
+using DesafioMagalu.Service.NotificationService;
+using Hangfire;
+using Hangfire.PostgreSql;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddHangfire((sp, config) =>
+{
+	var connectionString = sp.GetRequiredService<IConfiguration>().GetConnectionString("DefaultConnection");
+	config.UsePostgreSqlStorage(connectionString);
+});
+
+builder.Services.AddHangfireServer();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,5 +43,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseHangfireDashboard();
 
 app.Run();
