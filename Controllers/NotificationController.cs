@@ -28,10 +28,6 @@ namespace DesafioMagalu.Controllers
 			{
 				return NotFound(new { message = ex.Message });
 			}
-			catch (BadRequestException ex)
-			{
-				return BadRequest(new { message = ex.Message });
-			}
 			catch (ValidationException ex)
 			{
 				return BadRequest(new { message = ex.Message });
@@ -54,10 +50,6 @@ namespace DesafioMagalu.Controllers
 			{
 				return NotFound(new { message = ex.Message });
 			}
-			catch (BadRequestException ex)
-			{
-				return BadRequest(new { message = ex.Message });
-			}
 			catch (ValidationException ex)
 			{
 				return BadRequest(new { message = ex.Message });
@@ -78,10 +70,6 @@ namespace DesafioMagalu.Controllers
 			catch (NotFoundException ex)
 			{
 				return NotFound(new { message = ex.Message });
-			}
-			catch (BadRequestException ex)
-			{
-				return BadRequest(new { message = ex.Message });
 			}
 			catch (ValidationException ex)
 			{

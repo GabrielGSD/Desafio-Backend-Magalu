@@ -48,16 +48,23 @@ namespace DesafioMagalu.Service.NotificationService
                 DateTime = notification.DateTime,
                 Destination = notification.Destination,
                 Message = notification.Message,
-				ChannelId = (int)Enum.Parse(typeof(NotificationChannel), notification.Channel.ToUpper(), true),
 				StatusId = NotificationStatus.Pending.ToStatus(),
                 JobId = string.Empty
 			};
+
+			if (!Enum.TryParse(typeof(NotificationChannel), notification.Channel.ToUpper(), true, out var channelId))
+			{
+				throw new ValidationException("Invalid notification channel");
+			}
+
+			newNotification.ChannelId = (int)channelId;
 
 			_context.Notifications.Add(newNotification);
 			await _context.SaveChangesAsync();
 
 			string JobId = BackgroundJob.Schedule(() => SendNotification(newNotification.Id), DateTimeOffset.Parse(notification.DateTime.ToString()));
 
+            Console.WriteLine($"JobId: {JobId}, {DateTimeOffset.Parse(notification.DateTime.ToString())}, NotifId: {newNotification.Id}");
 			newNotification.JobId = JobId;
 			_context.Notifications.Update(newNotification);
 			await _context.SaveChangesAsync();
@@ -125,6 +132,10 @@ namespace DesafioMagalu.Service.NotificationService
 
 		public void SendNotification(int notificationId)
         {
+            if (notificationId <= 0)
+			{
+				throw new ValidationException("Invalid notification id");
+			}
 			var notificationContext = new NotificationContext();
             var notification = _context.Notifications.Find(notificationId);
 			try
