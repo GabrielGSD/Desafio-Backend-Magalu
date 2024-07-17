@@ -18,7 +18,9 @@
 ## Overview
 This project is a Notification Service developed as part of the Desafio Magalu. It's built using ASP.NET Core and aims to provide a robust API for scheduling, sending, and managing notifications.
 
----
+<p align="center" width="100%">
+    <img alt="Diagram" width="80%" src="./images/magalu.png"> 
+</p>
 
 ## Technologies Used
 - **C#** for the backend logic.
@@ -28,7 +30,6 @@ This project is a Notification Service developed as part of the Desafio Magalu. 
 - **PostgreSQL** as the database.
 - **Docker** for running the PostgreSQL database.
 
----
 ## Getting Started
 
    ### Prerequisites
@@ -82,16 +83,13 @@ The API supports the following operations:
 - **GET /api/notification?notificationId={id}**: Retrieve a notification by its ID.
 - **DELETE /api/notification?notificationId={id}**: Cancel a scheduled notification.
 
----
 ## Contributing
 Contributions are welcome! Please feel free to submit a pull request or open an issue for any bugs or feature requests.
 
----
 ## Inspiration
 This project was inspired by the video tutorial "[Resolvendo DESAFIO BACKEND da Magalu com Spring Boot, Scheduler e MySQL](https://www.youtube.com/watch?v=af4W9Q4vB1s)" from the Build & Run YouTube channel. The concepts and techniques demonstrated in the video were adapted and expanded upon to fit the specific needs and objectives of this project.
 
 The GitHub repository for the solution can be found here: [Build & Run - Repository](https://github.com/buildrun-tech/buildrun-desafio-backend-magalu/)
 
----
 ## Challenge
 Check out the full announcement by clicking here: [Desafio Magalu](https://github.com/buildrun-tech/buildrun-desafio-backend-magalu/blob/main/PROBLEM.md).
